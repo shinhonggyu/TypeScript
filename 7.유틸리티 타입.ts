@@ -13,6 +13,7 @@ const uk: UserKey = "id";
 // ----------------------------------------------------------------
 
 // Partial<T>
+// property(속성) 모두 optional
 interface User {
   id: number;
   name: string;
@@ -51,6 +52,7 @@ let admin1: Required<User2> = {
 // --------------------------------------------
 
 // Readonly<T>
+// property(속성) 모두 필수
 
 interface User3 {
   id: number;
@@ -58,17 +60,23 @@ interface User3 {
   age?: number;
 }
 
+let admin3: Required<User> = {
+  id: 1,
+  name: "shin",
+  age: 31,
+};
+
 let admin2: Readonly<User3> = {
   id: 1,
   name: "Bob",
 };
 
-// admin2.id = 4;
+// admin2.id = 4; 수정하는건 불가능
 
 // -----------------------------------------------
 
 // Record<K, T>
-
+// K는 key, T는 type
 // interface Score {
 //   "1": "A" | "B" | "C" | "D";
 //   "2": "A" | "B" | "C" | "D";

@@ -51,7 +51,8 @@ add(1, 2, 3); // 6
 
 // -------------------------------------
 
-This;
+// this의 타입을 정해주지않으면 에러
+// Ts에서 this의타입을 정할때는 첫번째 매개변수에쓰고 타입입력
 interface User {
   name: string;
 }
@@ -73,6 +74,7 @@ interface User {
   name: string;
   age: number;
 }
+// 전달받은 매개변수의타입에따라서 리턴해주는값이 다름
 // 동일한 함수이지만 매개변수의 타입이나 개수에따라 다른방식으로 동작
 // 전달받은 매개변수의 개수나 타입에따라 다른동작을 하도록 하는 오버로드
 function join(name: string, age: string): string;

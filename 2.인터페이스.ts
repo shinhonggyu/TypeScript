@@ -1,15 +1,17 @@
+// 코딩앙마❗
 let user: object;
 
 user = {
   name: "shin",
   age: 31,
 };
-
+// object는 에는 name이없다
+// property를 정의해서 객체표현 -> 인터페이스
 console.log(user.name);
 
 // 문자열 리터럴 타입
 type Score = "A" | "B" | "C" | "F";
-// property를 정의해서 객체표현
+// property를 정의해서 객체표현!
 interface User {
   name: string;
   age: number;
@@ -37,7 +39,7 @@ user2.gender = "male";
 user2.birthYear = readonly;
 
 // ----------------------------
-// interface로 함수도정의
+// interface로 함수도정의!
 interface Add {
   (num1: number, num2: number): number;
 }
@@ -49,6 +51,7 @@ const add: Add = function (x, y) {
 add(6, 9);
 
 // case2
+// 나이를받아 성인인지 아닌지
 interface IsAdult {
   (age: number): boolean;
 }
@@ -58,8 +61,8 @@ const a: IsAdult = (age) => {
 };
 
 // ----------------------------
-// interface로 class정의
-// implements 키워드사용
+// interface로 class 도정의
+// implements라는 키워드사용
 interface Car {
   color: string;
   wheels: number;
@@ -76,11 +79,26 @@ class Bmw implements Car {
     console.log("go..");
   }
 }
+
+const b = new Bmw("green");
+
 // interface 확장 extends 키워드
 interface Benz extends Car {
   door: number;
   stop(): void;
 }
+
+const benz: Benz = {
+  door: 5,
+  stop() {
+    console.log("stop");
+  },
+  color: "red",
+  wheels: 4,
+  start() {
+    console.log("start");
+  },
+};
 
 class Bmw2 implements Benz {
   color;
@@ -105,7 +123,7 @@ c.start();
 c.stop();
 
 // --------------------------
-
+// 여러개 확장
 interface Car {
   color: string;
   wheels: string;

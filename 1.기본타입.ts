@@ -1,3 +1,4 @@
+// 코딩앙마❗
 let age: number = 30;
 let isAdult: boolean = true;
 let a: number[] = [1, 2, 3];
@@ -45,14 +46,12 @@ enum Os {
 console.log(Os[10]) = "Ios";
 console.log(Os["Ios"]) = 10;
 
+// 숫자가아니기때문에 단방향 매핑만됨
 enum Os2 {
   Window = "Win",
   Ios = "ios",
   Android = "and",
 }
-
-let myOs: Os2;
-myOs = Os2.Window;
 
 // compile
 const Os = {
@@ -60,6 +59,13 @@ const Os = {
   Ios: "ios",
   Android: "and",
 };
+
+let myOs: Os2;
+myOs = Os2.Window;
+
+// null, undefined
+let a: null = null;
+let b: undefined = undefined;
 
 // case2
 // 숫자 열거형 Numeric Enum
@@ -73,7 +79,3 @@ enum GenderType2 {
   Male = "male",
   Female = "female",
 }
-
-// null, undefined
-let s: null = null;
-let c: undefined = undefined;
