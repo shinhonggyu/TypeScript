@@ -70,7 +70,7 @@ a(30, "m");
 
 // --------------------------------------------
 //
-interface User {
+interface UserX {
   name: string;
   age: number;
 }
@@ -78,8 +78,8 @@ interface User {
 // 동일한 함수이지만 매개변수의 타입이나 개수에따라 다른방식으로 동작
 // 전달받은 매개변수의 개수나 타입에따라 다른동작을 하도록 하는 오버로드
 function join(name: string, age: string): string;
-function join(name: string, age: number): User;
-function join(name: string, age: number | string): User | string {
+function join(name: string, age: number): UserX;
+function join(name: string, age: number | string): UserX | string {
   if (typeof age === "number") {
     // 타입가드
     return {
@@ -91,5 +91,5 @@ function join(name: string, age: number | string): User | string {
   }
 }
 
-const sam: User = join("shin", 31);
+const sam: UserX = join("shin", 31);
 const jane: string = join("jane", "30");
