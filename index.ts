@@ -34,9 +34,9 @@ let 학교: {
 학교.score[4] = false;
 학교.friend = ["Lee", 학교.teacher];
 
-// ------------함수에 타입 지정-----------------------
+//💖------------함수에 타입 지정-----------------------
 
-// 변수?:number = 변수: number | undefined⭐
+// 변수?:number = 변수: number | undefined => undefined라는 타입도 가질수있다⭐
 function 함수(x?: number) {
   console.log(x); // undefined
 }
@@ -59,7 +59,8 @@ function 함수2(x: number | string): void {
 함수2("2");
 
 // case2
-function 내함수(x?: number): undefined {
+function 내함수(x?: number) {
+  // x는 undefined 라는 타입도 가질수있다⭐
   return x * 2; // paremeter x : number | undefined
 }
 
@@ -113,7 +114,7 @@ function 결혼가능확률(
 
 결혼가능확률(100, false, "상"); // void
 
-// ---------- 타입 확정하기 Narrowing & Assertion ---------------------
+//💖---------- 타입 확정하기 Narrowing & Assertion ---------------------
 
 function 내함수X(x: number | string) {
   // return x + 1
@@ -136,4 +137,97 @@ function 내함수Y(x: number | string) {
   array[0] = x as number;
 }
 
-// -----------------------------------------------------
+// 숙제1
+function 클리닝함수(array: (number | string)[]): number[] {
+  return array.map((item) => {
+    if (typeof item === "string") {
+      return parseInt(item, 10);
+    } else {
+      return item;
+    }
+  });
+}
+
+클리닝함수(["1", 2, "3"]);
+
+// 숙제2
+let 철수쌤 = { subject: "math" };
+let 영희쌤 = { subject: ["science", "english"] };
+let 민수쌤 = { subject: ["science", "art", "korean"] };
+
+// 만들함수( { subject : 'math' } )  //이 경우 'math'를 return
+// 만들함수( { subject : ['science', 'art', 'korean'] } ) //이 경우 'korean'을 return
+// 만들함수( { hello : 'hi' } )  //이 경우 타입에러 나면 됩니다
+
+function 만들함수(x: { subject: string | string[] }): string {
+  if (typeof x.subject === "string") {
+    return x.subject;
+  } else if (Array.isArray(x.subject)) {
+    return x.subject[x.subject.length - 1];
+  } else {
+    // 주의점 else문 끝까지 서줘야 안전
+    return "에러";
+  }
+}
+
+//💖------타입도 변수에 담아쓰세요 type 키워드 써서 & readonly------
+
+// Type 변수 쓸때는 영어대문자 국룰
+type Person = { name: string; age: number };
+let 사람: Person = { name: "shin", age: 31 };
+
+type Girlfriend = {
+  readonly name?: string; // (name | undefined)
+};
+
+const 여친: Girlfriend = {
+  name: "엠버",
+};
+// TS 에러는 에디터 & 터미널에서만 존재
+// 실제 변환된 js파일은 에러없이 실행됨
+여친.name = "유라";
+
+// type 변수 합치기
+type Name = string;
+type Age = number;
+type PersonX = Name | Age;
+
+// & 연사자로 object타입 합치기
+type PositionX = { x: number };
+type PositionY = { y: number };
+
+type NewType = PositionX & PositionY;
+
+let position: NewType = { x: 10, y: 20 };
+
+// type 키워드는 재정의가 불가능
+// interface 키워드는 재정의가 가능❗ 하며 & 하는거랑 똑같은 기능⭐
+
+// (숙제 2)
+type X = {
+  color?: string;
+  size: number;
+  readonly position: number[];
+};
+
+//💖--------Literal Types로 만드는 const 변수 유사품-------
+
+type T = "가위" | "바위" | "보";
+
+function 함수z(a: T): T[] {
+  return ["가위"];
+}
+
+함수z("가위");
+
+// Literal type의 문제점
+var 자료 = {
+  name: "kim",
+} as const;
+
+// 'kim' 이라는 자료 X 'kim' 이라는 타입만
+function 내함수z(a: "kim") {}
+// 자료.name은 타입이 'kim'이 아닌 string
+내함수z(자료.name);
+
+//💖 ---------------------------------------------------

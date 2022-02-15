@@ -24,8 +24,8 @@ var 학교 = {
 };
 학교.score[4] = false;
 학교.friend = ["Lee", 학교.teacher];
-// ------------함수에 타입 지정-----------------------
-// 변수?:number = 변수: number | undefined⭐
+//💖------------함수에 타입 지정-----------------------
+// 변수?:number = 변수: number | undefined => undefined라는 타입도 가질수있다⭐
 function 함수(x) {
     console.log(x); // undefined
 }
@@ -45,6 +45,7 @@ function 함수2(x) {
 함수2("2");
 // case2
 function 내함수(x) {
+    // x는 undefined 라는 타입도 가질수있다⭐
     return x * 2; // paremeter x : number | undefined
 }
 내함수();
@@ -82,7 +83,7 @@ function 결혼가능확률(money, house, charm) {
 }
 결혼가능확률(700, false, "중"); // "결혼가능"을 return
 결혼가능확률(100, false, "상"); // void
-// ---------- 타입 확정하기 Narrowing & Assertion ---------------------
+//💖---------- 타입 확정하기 Narrowing & Assertion ---------------------
 function 내함수X(x) {
     // return x + 1
     // string | number 같은 union type 에는 일반적으로 조작을 못함
@@ -103,4 +104,55 @@ function 내함수Y(x) {
     // 또는 assertion 문법 디버깅용 비상용
     array[0] = x;
 }
-// -----------------------------------------------------
+// 숙제1
+function 클리닝함수(array) {
+    return array.map(function (item) {
+        if (typeof item === "string") {
+            return parseInt(item, 10);
+        }
+        else {
+            return item;
+        }
+    });
+}
+클리닝함수(["1", 2, "3"]);
+// 숙제2
+var 철수쌤 = { subject: "math" };
+var 영희쌤 = { subject: ["science", "english"] };
+var 민수쌤 = { subject: ["science", "art", "korean"] };
+// 만들함수( { subject : 'math' } )  //이 경우 'math'를 return
+// 만들함수( { subject : ['science', 'art', 'korean'] } ) //이 경우 'korean'을 return
+// 만들함수( { hello : 'hi' } )  //이 경우 타입에러 나면 됩니다
+function 만들함수(x) {
+    if (typeof x.subject === "string") {
+        return x.subject;
+    }
+    else if (Array.isArray(x.subject)) {
+        return x.subject[x.subject.length - 1];
+    }
+    else {
+        // 주의점 else문 끝까지 서줘야 안전
+        return "에러";
+    }
+}
+var 사람 = { name: "shin", age: 31 };
+var 여친 = {
+    name: "엠버"
+};
+// TS 에러는 에디터 & 터미널에서만 존재
+// 실제 변환된 js파일은 에러없이 실행됨
+여친.name = "유라";
+var position = { x: 10, y: 20 };
+function 함수z(a) {
+    return ["가위"];
+}
+함수z("가위");
+// Literal type의 문제점
+var 자료 = {
+    name: "kim"
+};
+// 'kim' 이라는 자료 X 'kim' 이라는 타입만
+function 내함수z(a) { }
+// 자료.name은 타입이 'kim'이 아닌 string
+내함수z(자료.name);
+//💖 ---------------------------------------------------
