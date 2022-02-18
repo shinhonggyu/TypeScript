@@ -155,4 +155,121 @@ var 자료 = {
 function 내함수z(a) { }
 // 자료.name은 타입이 'kim'이 아닌 string
 내함수z(자료.name);
-//💖 ---------------------------------------------------
+// 함수표현식, arrow function 에만 type alias 사용가능
+var ABC = function (x, y) {
+    return x + y;
+};
+var 회원정보 = {
+    name: "shin",
+    age: 31,
+    plusOne: function (x) {
+        return x + 1;
+    },
+    changeName: function () {
+        console.log("안녕");
+    }
+};
+var cutZero = function (x) {
+    if (x.indexOf("0") === 0) {
+        return x.slice(1);
+    }
+    else {
+        return x;
+    }
+};
+var removeDash = function (x) {
+    if (x.includes("-")) {
+        var replace = x.replace(/-/g, "");
+        return parseInt(replace, 10);
+    }
+    else {
+        return parseInt(x, 10);
+    }
+};
+var 숙제 = function (a, b, c) {
+    var result = cutZero(a);
+    var result2 = removeDash(result);
+    return result2;
+};
+숙제("010-1111-2222", cutZero, removeDash);
+//💖-----타입스크립트로 HTML 변경과 조작할 때 주의점-----
+//💖-------class 만들 때 타입지정 가능-------
+var PersonQ = /** @class */ (function () {
+    function PersonQ(name) {
+        this.age = 31;
+        this.name = name;
+    }
+    return PersonQ;
+}());
+var 사람1 = new PersonQ("shin");
+var 사람2 = new PersonQ("kim");
+// (숙제1)
+var 숙제class = /** @class */ (function () {
+    function 숙제class(model, price) {
+        this.model = model;
+        this.price = price;
+    }
+    // prototype
+    숙제class.prototype.tax = function () {
+        return this.price * 0.1;
+    };
+    return 숙제class;
+}());
+var car1 = new 숙제class("소나타", 3000);
+// (숙제2)
+var Word = /** @class */ (function () {
+    function Word() {
+        var rest = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            rest[_i] = arguments[_i];
+        }
+        this.numArray = this.filterNumber(rest);
+        this.strArray = this.filterString(rest);
+    }
+    Word.prototype.filterNumber = function (rest) {
+        var result = [];
+        rest.forEach(function (item) {
+            if (typeof item === "number") {
+                result.push(item);
+            }
+        });
+        return result;
+    };
+    Word.prototype.filterString = function (rest) {
+        var result = [];
+        rest.forEach(function (item) {
+            if (typeof item === "string") {
+                result.push(item);
+            }
+        });
+        return result;
+    };
+    return Word;
+}());
+var 결과 = new Word(1, "a", 2, "b", 3, "c");
+var 네모 = { name: "cat", age: 16 };
+var 전생 = { name: "shin", age: 31, score: 100 };
+var 상품 = {
+    brand: "Samsung",
+    serialNumber: 1360,
+    model: ["TV", "phone"]
+};
+var 장바구니 = [
+    { product: "청소기", price: 7000 },
+    { product: "삼다수", price: 800 },
+];
+var updateProduct = {
+    product: "커피",
+    price: 3200,
+    card: false
+};
+var 숙제4 = {
+    name: "shin",
+    age: 31,
+    plus: function (a, b) {
+        return a + b;
+    },
+    minus: function (a, b) {
+        return a - b;
+    }
+};

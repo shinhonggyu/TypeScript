@@ -230,4 +230,211 @@ function 내함수z(a: "kim") {}
 // 자료.name은 타입이 'kim'이 아닌 string
 내함수z(자료.name);
 
-//💖 ---------------------------------------------------
+//💖 ------함수와 methods에 type alias 지정하는 법-------
+
+// 함수 타입 type alias로 저장
+type NumOut = (x: number, y: number) => number;
+
+// 함수표현식, arrow function 에만 type alias 사용가능
+let ABC: NumOut = function (x, y) {
+  return x + y;
+};
+
+// 메소드 타입지정은 어떻게?
+
+type Info = {
+  name: string;
+  age: number;
+  plusOne: (x: number) => number;
+  changeName: () => void;
+};
+
+let 회원정보: Info = {
+  name: "shin",
+  age: 31,
+  plusOne(x) {
+    return x + 1;
+  },
+  changeName: () => {
+    console.log("안녕");
+  },
+};
+
+// (숙제2)
+//  함수에 타입지정시 type alias를 꼭 써보도록 합시다.
+
+type CutZero = (x: string) => string;
+
+const cutZero: CutZero = (x) => {
+  if (x.indexOf("0") === 0) {
+    return x.slice(1);
+  } else {
+    return x;
+  }
+};
+
+type RemoveDash = (x: string) => number;
+
+const removeDash: RemoveDash = (x) => {
+  if (x.includes("-")) {
+    const replace = x.replace(/-/g, "");
+    return parseInt(replace, 10);
+  } else {
+    return parseInt(x, 10);
+  }
+};
+
+// (숙제3)
+type 숙제타입 = (a: string, b: CutZero, c: RemoveDash) => number;
+
+let 숙제: 숙제타입 = function (a, b, c) {
+  const result = cutZero(a);
+  const result2 = removeDash(result);
+  return result2;
+};
+
+숙제("010-1111-2222", cutZero, removeDash);
+
+//💖-----타입스크립트로 HTML 변경과 조작할 때 주의점-----
+
+//💖-------class 만들 때 타입지정 가능-------
+
+class PersonQ {
+  // class 필드값(constructor와 같은 역할)
+  name: string;
+  age: number = 31;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+let 사람1 = new PersonQ("shin");
+let 사람2 = new PersonQ("kim");
+
+// (숙제1)
+class 숙제class {
+  model: string;
+  price: number;
+  constructor(model: string, price: number) {
+    this.model = model;
+    this.price = price;
+  }
+
+  // prototype
+  tax(): number {
+    return this.price * 0.1;
+  }
+}
+
+let car1 = new 숙제class("소나타", 3000);
+
+// (숙제2)
+class Word {
+  numArray: number[];
+  strArray: string[];
+  constructor(...rest: (string | number)[]) {
+    this.numArray = this.filterNumber(rest);
+    this.strArray = this.filterString(rest);
+  }
+
+  filterNumber(rest: (string | number)[]): number[] {
+    let result: number[] = [];
+    rest.forEach((item) => {
+      if (typeof item === "number") {
+        result.push(item);
+      }
+    });
+    return result;
+  }
+
+  filterString(rest: (string | number)[]): string[] {
+    let result: string[] = [];
+    rest.forEach((item) => {
+      if (typeof item === "string") {
+        result.push(item);
+      }
+    });
+    return result;
+  }
+}
+
+const 결과 = new Word(1, "a", 2, "b", 3, "c");
+
+//💖 -------- Object에 타입지정하려면 interface 이것도 있음 ------------
+type Animal = { name: string };
+type Cat = { age: number } & Animal;
+
+let 네모: Cat = { name: "cat", age: 16 };
+
+// type vs interface .. interface는 중복선언 가능
+// 외부 라이브러리같은경우 interface 많이쓰므로
+// 추후에 타입 더하는게 쉽다
+interface Student2 {
+  name: string;
+}
+
+interface Student2 {
+  score: number;
+}
+
+interface Teacher extends Student2 {
+  age: number;
+}
+
+let 전생: Teacher = { name: "shin", age: 31, score: 100 };
+
+// (숙제 1)
+interface Product {
+  brand: string;
+  serialNumber: number;
+  model: string[];
+}
+
+let 상품: Product = {
+  brand: "Samsung",
+  serialNumber: 1360,
+  model: ["TV", "phone"],
+};
+
+// (숙제2)
+
+interface Product2 {
+  product: string;
+  price: number;
+}
+
+let 장바구니: Product2[] = [
+  { product: "청소기", price: 7000 },
+  { product: "삼다수", price: 800 },
+];
+
+// (슥제3)
+interface UpdateProduct2 {
+  card: boolean;
+}
+
+let updateProduct: UpdateProduct2 & Product2 = {
+  product: "커피",
+  price: 3200,
+  card: false,
+};
+
+// (숙제4)
+
+interface 숙제4 {
+  name: string;
+  age: number;
+  plus(a: number, b: number): number;
+  minus: (a: number, b: number) => number;
+}
+
+const 숙제4: 숙제4 = {
+  name: "shin",
+  age: 31,
+  plus(a, b) {
+    return a + b;
+  },
+  minus(a, b) {
+    return a - b;
+  },
+};

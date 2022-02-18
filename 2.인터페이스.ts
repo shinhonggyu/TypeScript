@@ -44,11 +44,11 @@ interface Add {
   (num1: number, num2: number): number;
 }
 
-const add: Add = function (x, y) {
+const addx: Add = function (x, y) {
   return x + y;
 };
 
-add(6, 9);
+addx(6, 9);
 
 // case2
 // 나이를받아 성인인지 아닌지

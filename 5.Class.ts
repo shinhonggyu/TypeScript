@@ -1,11 +1,11 @@
 class Car {
   // TS에서 class작성할때 멤버변수는 미리선언 해주어야한다.
-  color: string;
+  // color: string;
 
   // 멤버변수를 미리 선언하지않는 방법: 접근자연자, readonly
   // public 혹은 readonly
-  constructor(readonly color: string) {
-    this.color = color;
+  constructor(readonly color2: string) {
+    this.color = color2;
   }
   start() {
     console.log("start");
@@ -22,41 +22,31 @@ public - 자식 클래스, 클래스 인스턴스에서 모두 접근 가능 표
 private, #변수명 - 해당 클래스 내부에서만 접근 가능
 protected - 자식 클래스에서 접근 가능
 */
-class Car2 {
-  readonly name: string = "car";
+class Car5 {
+  protected name: string = "car";
   color: string;
-  // static은 정적멤버변수를 만들어 클래스.로접근가능
   static wheels = 4;
-  constructor(color: string, name: string) {
+  constructor(color: string) {
     this.color = color;
-    this.name = name;
   }
   start() {
     console.log("start");
     console.log(this.name);
-    console.log(Car2.wheels);
   }
 }
 
-class Bmw extends Car2 {
-  constructor(color: string, name: string) {
-    super(color, name);
+class Benz2 extends Car5 {
+  constructor(color: string) {
+    super(color);
   }
   showName() {
-    // 부모의멤버변수 name을 보여줌
-    // Car의 named이 public이므로 자식에서 접근가능
-    // name이 private | #일경우 에러
-    // protedted경우 자식클래스에서 참조가능하나 인스턴스에서는 불가능
-    console.log(super.name);
-    console.log(this.name);
+    super.name = "updateCar";
   }
 }
-// name을 바꾸고싶을경우 constructor내부에서 바꿔줌
-const z4 = new Bmw("black", "zzz4");
-console.log(z4.name); // public일경우
-console.log(Car2.wheels);
-// public이라 수정가능하지만 readonly로 못하게해줌
-z4.name = "zzz4";
+
+const z5 = new Benz2("black");
+z5.showName();
+z5.start();
 
 // --------------------------------------
 
