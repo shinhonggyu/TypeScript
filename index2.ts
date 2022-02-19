@@ -46,7 +46,7 @@ function 함수([a, b, c]: 어레이) {
 
 함수([40, "wine", false]);
 
-//💛Narrowing 할 수 있는 방법 더 알아보기
+//🧡 --- Narrowing 할 수 있는 방법 더 알아보기 ---
 
 // 실제로 개발할 때 어떤 변수나 함수파라미터에 null, undefined가 들어올 경우
 // 어떻게 대처할지 if문으로 코드짜는 경우가 매우 많을 겁니다.
@@ -88,7 +88,8 @@ function Narrow3(x: NarrowCar | NarrowBike) {
   }
 }
 
-//🧡 public, private
+//🧡 --- public, private ---
+
 class 유저 {
   public name: string;
   public name2: string;
@@ -116,3 +117,77 @@ class 사람3 {
   constructor(public name: string) {}
 }
 let person3 = new 사람3("john");
+
+//🧡 --- protected, static ---
+
+class Userf {
+  protected x = 10;
+}
+
+class NewUserf extends Userf {
+  doThis() {
+    this.x = 20;
+  }
+}
+
+//  class에 직접 변수나 함수를 부여하고 싶으면 static 키워드
+// 주로 class 안에 간단한 메모를 하거나, 기본 설정값을 입력하거나
+// class로 부터 생성되는 object가 사용할 필요가 없는 변수들을 만들어놓고 싶을 때 사용합니다
+class Userp {
+  static skill = "js";
+  intro = Userp.skill + "전문가입니다";
+}
+
+let 철수 = new Userp();
+Userp.skill = "python";
+let 영희 = new Userp();
+// private 쓰고 수정함수를 만들어서 사용하는게 더 안전
+
+// (숙제1)
+class 속성 {
+  private static x = 10;
+  public static y = 20;
+  protected z = 30;
+}
+
+// (숙제2)
+class AddNumber {
+  private static x = 10;
+  public static y = 20;
+
+  static addOne(x: number) {
+    AddNumber.x = AddNumber.x + x;
+  }
+
+  static PrintX() {
+    console.log(AddNumber.x);
+  }
+}
+
+AddNumber.addOne(3); //이렇게 하면 x가 3 더해져야함
+
+// (숙제3)
+class Square {
+  constructor(
+    public width: number,
+    public height: number,
+    public color: string
+  ) {}
+
+  draw() {
+    let a = Math.random();
+    let square = `<div style="position:relative; 
+      top:${a * 400}px; 
+      left:${a * 400}px; 
+      width:${this.width}px; 
+      height : ${this.height}px; 
+      background:${this.color}"></div>`;
+    document.body.insertAdjacentHTML("beforeend", square);
+  }
+}
+
+let addBlock = new Square(30, 30, "red");
+addBlock.draw();
+addBlock.draw();
+addBlock.draw();
+addBlock.draw();
