@@ -341,3 +341,52 @@ testCar.tax(123);
 let 붕붕이 = new Car("morning");
 
 //🧡 --- object index signatures
+interface StringOnly {
+  [key: string]: string | number;
+}
+
+let user: StringOnly = {
+  name: "kim",
+  age: 20,
+  location: "seoul",
+};
+
+//🧡---object 타입 변환기 만들기
+let obj = {
+  name: "kim",
+  age: 20,
+};
+
+Object.keys(obj);
+
+interface Person {
+  [key: string]: number;
+}
+
+let o: Person = {
+  name: 123,
+  123: 123,
+};
+
+// string|number
+type PersonKeys = keyof Person;
+// lliteral 타입
+let a: PersonKeys = "age";
+
+type CAR = {
+  color: boolean;
+  model: boolean;
+  price: boolean | number;
+};
+
+type TypeChanger<MyType> = {
+  [key in keyof MyType]: string;
+};
+
+type 새로운타입 = TypeChanger<CAR>;
+
+// 🧡 --- 조건문으로 타입만들기 & infer
+// 1.type if문은 삼항연산자로
+// 2.조건식은 extends로 가지고있는지
+type Age<T> = T extends string ? string : unknown;
+let aa: Age<string> = "123";
