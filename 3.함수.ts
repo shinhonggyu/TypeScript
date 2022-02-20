@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // interface처럼 함수의 선택적 매개변수
 function hello(name?: string) {
   return `hello, ${name || "world"}`;

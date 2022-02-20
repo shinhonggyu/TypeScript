@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 class Car {
   // TS에서 class작성할때 멤버변수는 미리선언 해주어야한다.
   // color: string;

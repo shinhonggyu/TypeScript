@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // 사용하는이유
 function getSize(arr: number[] | string[] | boolean[] | object[]): number {
   return arr.length;

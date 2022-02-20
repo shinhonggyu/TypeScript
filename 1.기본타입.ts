@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // 코딩앙마❗
 let age: number = 30;
 let isAdult: boolean = true;

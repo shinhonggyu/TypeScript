@@ -8,7 +8,7 @@ var student = {
     codingIQ: 80,
     code: function () {
         console.log("brain is working hard");
-    }
+    },
 };
 student.name = 10;
 // 파라미터 타입을 안줬지만 리턴값 추론
@@ -43,7 +43,7 @@ function getStudentDetails2(studentID) {
         studentName: "Mark Jacobs",
         courseCompleted: true,
         gender: Gender.Male2,
-        grade: "B"
+        grade: "B",
     };
 }
 // 반복되는 코드를 피한다⭐
@@ -56,7 +56,7 @@ var student1 = {
     courseCompleted: false,
     age: 31,
     gender: Gender.Female2,
-    grade: "C"
+    grade: "C",
 };
 saveStudentDetails(student1);
 // -----------------------------------------------
@@ -153,5 +153,6 @@ var employee2 = new Employee2('홍규', 31, '주니어 개발자', 40, 35);
 employee2.fullName = '헨리';
 console.log(employee2.fullName); // 헨리
 employee2.printEmployeeDetails();
+export {};
 // 비공개로 설정된 객체의 멤버변수에 접근하여 값을 읽거나 쓰기위해서
 // Get과 Set 키워드를 사용하여 Getter와 Setter를 선언

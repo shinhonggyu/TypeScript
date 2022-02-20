@@ -13,13 +13,22 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 //🧡 --- 함수 rest 파라미터, destructuring 할 때 타입지정
 var person = { student: true, age: 20 };
-function 함수(_a) {
+function 함수1(_a) {
     var student = _a.student, age = _a.age;
     console.log(student, age);
 }
-함수(person);
+함수1(person);
 // (숙재1) 최댓값 return
 function 최댓값() {
     var rest = [];
@@ -171,3 +180,69 @@ addBlock.draw();
 addBlock.draw();
 addBlock.draw();
 addBlock.draw();
+//🧡 --- 타입을 파라미터로 입력하는 Generic
+function 함수W(x) {
+    return x[0];
+}
+var w = 함수W([4, 2]);
+// console.log(w + 1) x는 unknown
+function Generic(x) {
+    return x[0];
+}
+var l = Generic([4, 2]);
+// ❌ Error => extends number로 타입제한
+function 함수t(x) {
+    return x - 1;
+}
+var g = 함수t(100);
+// 타입파라미터 제한두기
+// MyType이 우측에있는 속성을 가지고 있는지
+// if문 같은거임
+function Generic2(x) {
+    return x - 1;
+}
+var p = Generic2(100);
+function Generic3(x) {
+    return x.length;
+}
+Generic3(["a", "b", "c"]);
+function G숙제1(x) {
+    console.log(x.length);
+}
+G숙제1("hello"); // 5
+G숙제1(["kim", "park"]); // 2
+var data = '{"name":"dog","age":1}';
+function G숙제2(x) {
+    return JSON.parse(x);
+}
+G숙제2(data);
+// 숙제3
+var G숙제3 = /** @class */ (function () {
+    function G숙제3(a) {
+        this.name = a;
+    }
+    return G숙제3;
+}());
+var o = new G숙제3("어쩌구");
+o.name;
+//🧡 --- array 자료에 붙일 수 있는 tuple type
+var 멍멍 = ["dog", true];
+// 위치까지 고려한 타입지정 가능 , 옵션은마지막
+var 멍멍2 = ["dog", true];
+// rest parameter 타입도 tuple가능
+function restT() {
+    var rest = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        rest[_i] = arguments[_i];
+    }
+    console.log(rest);
+}
+// 똑같음, rest는 배열에담김
+// function restT(a: number, b: string) {
+//   console.log([a, b]);
+// }
+restT(111, "222");
+// spread
+var Arr = [1, 2, 3];
+var Arr2 = __spreadArray([4, 5], Arr, true);
+export {};

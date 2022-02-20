@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // 코딩앙마❗
 let user: object;
 

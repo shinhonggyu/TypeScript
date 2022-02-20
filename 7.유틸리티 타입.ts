@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // keyof
 interface User {
   id: number;

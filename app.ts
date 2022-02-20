@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // 타입 추론 (Type Inference)
 // 타입표기가 없는경우 타입 유추
 let a = 5;

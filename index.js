@@ -20,7 +20,7 @@ var 나이2 = 1;
 var 학교 = {
     score: [100, 97, 84],
     teacher: "Phil",
-    friend: "John"
+    friend: "John",
 };
 학교.score[4] = false;
 학교.friend = ["Lee", 학교.teacher];
@@ -137,7 +137,7 @@ function 만들함수(x) {
 }
 var 사람 = { name: "shin", age: 31 };
 var 여친 = {
-    name: "엠버"
+    name: "엠버",
 };
 // TS 에러는 에디터 & 터미널에서만 존재
 // 실제 변환된 js파일은 에러없이 실행됨
@@ -149,7 +149,7 @@ function 함수z(a) {
 함수z("가위");
 // Literal type의 문제점
 var 자료 = {
-    name: "kim"
+    name: "kim",
 };
 // 'kim' 이라는 자료 X 'kim' 이라는 타입만
 function 내함수z(a) { }
@@ -167,7 +167,7 @@ var 회원정보 = {
     },
     changeName: function () {
         console.log("안녕");
-    }
+    },
 };
 var cutZero = function (x) {
     if (x.indexOf("0") === 0) {
@@ -252,7 +252,7 @@ var 전생 = { name: "shin", age: 31, score: 100 };
 var 상품 = {
     brand: "Samsung",
     serialNumber: 1360,
-    model: ["TV", "phone"]
+    model: ["TV", "phone"],
 };
 var 장바구니 = [
     { product: "청소기", price: 7000 },
@@ -261,7 +261,7 @@ var 장바구니 = [
 var updateProduct = {
     product: "커피",
     price: 3200,
-    card: false
+    card: false,
 };
 var 숙제4 = {
     name: "shin",
@@ -271,5 +271,6 @@ var 숙제4 = {
     },
     minus: function (a, b) {
         return a - b;
-    }
+    },
 };
+export {};

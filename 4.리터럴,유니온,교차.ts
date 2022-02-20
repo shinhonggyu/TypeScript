@@ -1,3 +1,4 @@
+export {}; // 로컬모듈
 // Literal Types
 // 세로줄은 Union Type이라 한다.
 // 정해진 string값을 가진 문자열리터럴
